@@ -1,11 +1,5 @@
-score = int(input("정수 입력:"))
-if score >= 90:
-    print("성적 : A")
-    print("장학금 수여")
-    
-age_0 = 22
-age_1 = 18
-age = int(input("your age?"))
-if age < age_0 and age_1:
-    print("당신의 나이는 18~22세 사이입니다.")
-    
+def Squares(n):
+    return n**2
+numbers = [1,3,5,9]
+print(list(map(Squares, numbers)))
+print(list(map(lambda n : n**2, numbers)))
