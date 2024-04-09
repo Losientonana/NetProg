@@ -1,34 +1,45 @@
-days = {
-    'January': 31, 'February': 28, 'March': 31, 'April': 30,
-    'May': 31, 'June': 30, 'July': 31, 'August': 31,
-    'September': 30, 'October': 31, 'November': 30,
-    'December': 31
-}
+d = [
+    {'name': 'Todd', 'phone': '555-1414', 'email': 'todd@mail.net'},
+    {'name': 'Helga', 'phone': '555-1618', 'email': 'helga@mail.net'},
+    {'name': 'Princess', 'phone': '555-3141', 'email': ''},
+    {'name': 'LJ', 'phone': '555-2718', 'email': 'lj@mail.net'}
+]
 
 
-user_input = input("월을 입력하세요: ")
-if user_input.capitalize() in days:
-    print(f"{user_input.capitalize()}의 일수는 {days[user_input.capitalize()]}입니다.")
-else:
-    
-    abbreviations = {month[:3]: days[month] for month in days}
-    if user_input.capitalize() in abbreviations:
-        print(f"{user_input.capitalize()}의 일수는 {abbreviations[user_input.capitalize()]}입니다.")
-    else:
-        print("잘못된 입력입니다.")
+def print_users_with_phone_ending_in_8():
+    for person in d:
+        if person['phone'].endswith('8'):
+            print(person['name'])
 
 
-print("알파벳 순서로 정렬된 월:")
-for month in sorted(days):
-    print(month)
+def print_users_without_email():
+    for person in d:
+        if not person['email']:
+            print(person['name'])
 
 
-print("일수가 31인 월:")
-for month, day in days.items():
-    if day == 31:
-        print(month)
+def print_contact_info(name):
+    for person in d:
+        if person['name'] == name:
+            print(f"전화번호: {person['phone']}, 이메일: {person['email']}")
+            return
+    print("이름이 없습니다")
 
 
-print("일수를 기준으로 오름차순 정렬된 월:")
-for month in sorted(days, key=days.get):
-    print(f"{month}: {days[month]}")
+def parse_string_to_dict(query_string, delimiter1, delimiter2):
+    result_dict = {}
+    pairs = query_string.split(delimiter1)
+    for pair in pairs:
+        key, value = pair.split(delimiter2)
+        result_dict[key] = value
+    return result_dict
+
+
+print("전화번호가 8로 끝나는 사용자:")
+print_users_with_phone_ending_in_8()
+
+print("\n이메일이 없는 사용자:")
+print_users_without_email()
+
+user_input = input("\n사용자 이름을 입력하세요: ")
+print_contact_info(user_input)
